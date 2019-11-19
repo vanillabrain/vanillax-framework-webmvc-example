@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletRequest
 class LoginFilter extends FilterBase {
     @Autowired
     UsersDAO usersDAO
-    private def ignoreSessionUrlList = ['/user/login', '/user/logout', '/fileDownload', '/fileUpload','/sample']
+    private def ignoreSessionUrlList = ['/user/login', '/user/logout', '/fileDownload', '/fileUpload', '/sample', '/student']
 
     @Override
     Map<String, Object> preprocess(Map<String, Object> param) throws Exception {
