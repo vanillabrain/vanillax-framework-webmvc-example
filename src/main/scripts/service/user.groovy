@@ -3,6 +3,7 @@ package service
 import common.Validator
 import groovy.util.logging.Log
 import vanillax.webmvc.example.common.Constants
+import vanillax.webmvc.example.common.DateUtils
 import vanillax.webmvc.example.common.StringUtils
 import sql.common.UsersDAO
 import vanillax.framework.core.db.Transactional
@@ -47,11 +48,14 @@ class user extends ServiceBase{
                     //정상적인 ID, 비번인경우
                     //기존 Token은 무효화한다
                     if(data._input._token){
-                        usersDAO.updateUsersTokenUpdateAsInvalidate([token:data._input._token, tokenUpdateDate:'axxxx'])
+                        def param = [token:data._input._token]
+                        DateUtils.putCurrentDate(param)
+                        usersDAO.updateUsersTokenUpdateAsInvalidate(param)
                     }
                     //오래된 토큰을 삭제한다
                     int tokenTimeout = ConfigHelper.getInt("token.timeout", 300)
                     def param = [userId:user.userId, _userId:user.userId, tokenTimeout:tokenTimeout]
+                    DateUtils.putCurrentDate(param)
                     usersDAO.deleteUsersTokenOldByUserId(param)
                     //새 토큰을 생성한다.
                     def token = StringUtils.makeToken()
@@ -65,7 +69,9 @@ class user extends ServiceBase{
                 throw new BaseException("ERR1101", "로그인 오류","ID가 존재하지 않거나 잘못된 비번입니다",null)
             }
         }else if(data._path == 'logout'){
-            usersDAO.updateUsersTokenUpdateAsInvalidate([token:data._input._token, tokenUpdateDate:'axxxx'])
+            def param = [token:data._input._token]
+            DateUtils.putCurrentDate(param)
+            usersDAO.updateUsersTokenUpdateAsInvalidate(param)
             return null
         }
     }

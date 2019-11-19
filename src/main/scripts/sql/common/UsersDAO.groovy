@@ -101,7 +101,7 @@ interface UsersDAO {
            SET
                 modUser = :_userId,
                 modDate = :currentDate, 
-                tokenUpdateDate = :tokenUpdateDate
+                tokenUpdateDate = :currentDate
         WHERE token = :token
     ''')
     int updateUsersTokenUpdateAsInvalidate(Map x)
