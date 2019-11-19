@@ -1,10 +1,8 @@
 package vanillax.webmvc.example.common;
 
-import java.security.MessageDigest;
 import java.sql.Timestamp;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 
 public class DateUtils {
 
