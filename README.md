@@ -3,7 +3,7 @@
 * Get Started
     - copy db/vanilla-sample.db to db/vanilla.db
     - run Tomcat8Launcher (test/java/vanillax/webmvc/example/Tomcat8Launcher.java)
-    - call http://localhost:8080/rest/student
+    - open on browser : http://localhost:8080/
     
 * DB Setup
 ```
