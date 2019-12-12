@@ -1,6 +1,5 @@
 package vanillax.webmvc.example;
 
-import vanillax.webmvc.example.servlet.FileUploadDownloadServlet;
 import org.apache.catalina.Context;
 import org.apache.catalina.LifecycleException;
 import org.apache.catalina.startup.Tomcat;
@@ -85,7 +84,7 @@ public class Tomcat8Launcher {
 
         tomcatServer.addServlet("restServlet", "/rest/*", new RestServlet());
         tomcatServer.addServlet("jsonServlet", "/json/*", new JsonServlet());
-        tomcatServer.addServlet("fileUploadDownload", "/file/*", new FileUploadDownloadServlet());
+//        tomcatServer.addServlet("fileUploadDownload", "/file/*", new FileUploadDownloadServlet());
 
         tomcatServer.startServer();
     }
