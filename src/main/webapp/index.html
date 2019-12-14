@@ -117,7 +117,7 @@ $( "#loginBt" ).click(function() {
             $("#examples").css("visibility","visible");
             vanillaxHelper.putToken(response.data.resultObject.token);
          })
-         .catch(function(err, data){
+         .catch(function(err){
             if(err.response && err.response.data && err.response.data.message ){
                 let msg = err.response.data.message;
                 if(err.response.data.detail){

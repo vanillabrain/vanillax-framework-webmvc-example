@@ -171,7 +171,7 @@ function delinfo(info){
                 grid.resetData(response.data.resultList);
             })
             .catch(function(err){
-                //error
+                vanillaxHelper.onError(err);
             });
     }else{
         axios.get('/rest/student',{
@@ -181,7 +181,7 @@ function delinfo(info){
                 grid.resetData(response.data.resultList);
             })
             .catch(function(err){
-                //error
+                vanillaxHelper.onError(err);
             });
     }
    

@@ -24,7 +24,23 @@ var vanillaxHelper = {
         if(!this.hasToken()){
             return false;
         }
-
         return false;
     },
+    onError: function(err){
+//        console.log(JSON.stringify(err));
+        if(err.response && err.response.data && err.response.data.message ){
+            if(err.response.data.code && err.response.data.code === "ERR1100"){//Login Error
+                alert("You are not logged in.");
+                location.replace("/");
+                return;
+            }
+            let msg = err.response.data.message;
+            if(err.response.data.detail){
+                msg = msg + " / " + err.response.data.detail;
+            }
+            alert(msg);
+        }
+
+
+    }
 };
