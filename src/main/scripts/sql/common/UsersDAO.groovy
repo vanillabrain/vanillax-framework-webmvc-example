@@ -83,8 +83,8 @@ interface UsersDAO {
     int updateUsersTokenUpdateDateByToken(Map x)
 
     @Insert('''
-        INSERT INTO UsersToken(userId, token, tokenUpdateDate, regUser, regDate, modUser, modDate) 
-        VALUES(:userId, :token, :currentDate, :_userId, :currentDate, :_userId, :currentDate)
+        INSERT INTO UsersToken(id, userId, token, tokenUpdateDate, regUser, regDate, modUser, modDate) 
+        VALUES(:id, :userId, :token, :currentDate, :_userId, :currentDate, :_userId, :currentDate)
     ''')
     def insertUsersToken(Map x)
 

@@ -6,6 +6,7 @@ import sql.common.FileDAO
 import vanillax.framework.core.db.Transactional
 import vanillax.framework.core.object.Autowired
 import vanillax.framework.webmvc.service.ServiceBase
+import vanillax.webmvc.example.common.Constants
 
 @Log
 class fileUpload extends ServiceBase{
@@ -20,7 +21,7 @@ class fileUpload extends ServiceBase{
         def list = data.uploadFileList;
         def fileList = []
         list.each{ it ->
-            it.id = sequenceHelper.nextValue('fileSeq')
+            it.id = sequenceHelper.nextValue(Constants.SEQ_FILE)
             fileDAO.insertFile(it)
             it.url = "/file/fileDownload/$it.id"
             fileList << it

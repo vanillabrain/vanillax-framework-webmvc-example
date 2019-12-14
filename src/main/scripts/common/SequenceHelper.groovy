@@ -11,7 +11,7 @@ class SequenceHelper {
     @Autowired
     SequenceDAO sequenceDAO
 
-    @Transactional(autoCommit = false)
+//    @Transactional(autoCommit = false) //sqlite에서 복수 connection을 허용하지 않음.
     def nextValue(sequenceName){
         def m = sequenceDAO.selectSeq([sequenceName:sequenceName])
         sequenceDAO.updateSeq([sequenceName:sequenceName, sequenceCurValue:m.sequenceCurValue+1])
