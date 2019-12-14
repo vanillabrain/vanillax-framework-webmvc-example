@@ -15,7 +15,7 @@ class SequenceHelper {
     def nextValue(sequenceName){
         def m = sequenceDAO.selectSeq([sequenceName:sequenceName])
         sequenceDAO.updateSeq([sequenceName:sequenceName, sequenceCurValue:m.sequenceCurValue+1])
-        return m.sequenceCurValue
+        return m.sequenceCurValue + 1
     }
 
 }

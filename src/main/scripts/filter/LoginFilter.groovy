@@ -10,6 +10,7 @@ import vanillax.framework.webmvc.service.FilterBase
 import vanillax.webmvc.example.common.DateUtils
 
 import javax.servlet.http.HttpServletRequest
+import java.sql.Timestamp
 
 /**
  * 인증정보 필터
@@ -18,7 +19,7 @@ import javax.servlet.http.HttpServletRequest
 class LoginFilter extends FilterBase {
     @Autowired
     UsersDAO usersDAO
-    private def ignoreSessionUrlList = ['/user/login', '/user/logout', '/fileDownload', '/fileUpload', '/sample', '/student']
+    private def ignoreSessionUrlList = ['/user/login', '/user/logout', '/fileDownload', '/fileUpload', '/sample']
 
     @Override
     Map<String, Object> preprocess(Map<String, Object> param) throws Exception {
@@ -70,6 +71,9 @@ class LoginFilter extends FilterBase {
         def obj = usersDAO.selectUserByToken(param)
         if(!obj)
             return [tokenValid:false]
+        if(obj.tokenUpdateDate instanceof Long){ //for sqlite
+            obj.tokenUpdateDate = new Timestamp(obj.tokenUpdateDate)
+        }
         obj.tokenValid = DateUtils.isValid(obj.tokenUpdateDate, param.tokenTimeout)
         return obj
     }

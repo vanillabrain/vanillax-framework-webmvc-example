@@ -65,10 +65,12 @@ span.password {
   }
 }
 </style>
-    <!-- jquery -->
+    <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <!-- axios -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
+
+    <script src="/js/common.js"></script>
 
 </head>
 <body>
@@ -84,6 +86,10 @@ span.password {
         <button type="button" id="loginBt">Login</button>
     </div>
 
+<div id="examples" style="visibility:hidden">
+    <a href="/student.html">Student List Example</a> <br/>
+    <a href="/file.html">File Upload Example</a>
+</div>
 
 </body>
 <script>
@@ -106,9 +112,10 @@ $( "#loginBt" ).click(function() {
     let obj = {"username":username, "password":password};
      axios.post('/rest/user/login', obj)
          .then(function(response){
-            //console.log(JSON.stringify(response));
-            alert("You logged in");
-
+            //console.log(JSON.stringify(response.data.resultObject.data));
+            alert("You logged in");//정상 로그인된 경우
+            $("#examples").css("visibility","visible");
+            vanillaxHelper.putToken(response.data.resultObject.token);
          })
          .catch(function(err, data){
             if(err.response && err.response.data && err.response.data.message ){

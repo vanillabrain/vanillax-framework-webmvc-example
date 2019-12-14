@@ -4,10 +4,22 @@
     <meta charset="utf-8">
     <title>File Upload Example</title>
     <link rel="stylesheet" href="/css/dropzone.css">
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <!-- axios -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
+
+    <!-- file upload library -->
+    <script src="/js/dropzone.js"></script>
+
+    <!-- custom js -->
+    <script src="/js/common.js"></script>
+
 </head>
 <body>
 
-<h2>File Upload Example</h2>
+<h2>Vanillax File Upload Example</h2>
 
 <form action="/file/fileUpload"
       class="dropzone"
@@ -15,10 +27,9 @@
 
 </body>
 
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<script src="/js/dropzone.js"></script>
-
 <script>
+
+    console.log(vanillaxHelper.getToken());
 
 </script>
 
