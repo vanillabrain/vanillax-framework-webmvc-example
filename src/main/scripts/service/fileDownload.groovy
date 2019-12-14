@@ -23,7 +23,7 @@ class fileDownload extends ServiceBase{
         if(!file){
             throw new Exception("파일이 없습니다.");
         }
-        String uploadPath = ConfigHelper.get("cda.file.upload");
+        String uploadPath = ConfigHelper.get("file.upload.directory");
         String fileFullPath = uploadPath + file.filePath;
         File downloadFile = new File(fileFullPath);
         if(!downloadFile.exists() || downloadFile.length() == 0 || downloadFile.isDirectory()){
