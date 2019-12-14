@@ -3,8 +3,10 @@
 * Get Started
     - git clone this repo
     - copy db/vanilla-sample.db to db/vanilla.db
+    - open this project with Intellij
     - run Tomcat8Launcher (test/java/vanillax/webmvc/example/Tomcat8Launcher.java)
     - open on browser : http://localhost:8080/
+    - default input/output example : http://localhost:8080/student.html
     - fle upload example : http://localhost:8080/file.html
     
 * DB Setup
@@ -40,7 +42,7 @@ CREATE TABLE UsersToken  (
 	id             	int(11) NOT NULL,
 	userId         	varchar(100)  NOT NULL,
 	token          	varchar(100)  NOT NULL,
-	tokenUpdateDate	varchar(14)  NOT NULL,
+	tokenUpdateDate	timestamp  NOT NULL,
 	regUser        	varchar(100)  NULL ,
 	regDate        	timestamp NULL ,
 	modUser        	varchar(100)  NULL ,
@@ -74,4 +76,7 @@ CREATE TABLE CommonCodeDetail  (
 	modDate   	timestamp NULL ,
 	PRIMARY KEY(codeGroup,codeDetail) 
 )
+;
+
+
 ```
