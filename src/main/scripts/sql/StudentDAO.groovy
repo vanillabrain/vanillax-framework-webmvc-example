@@ -63,7 +63,7 @@ interface StudentDAO {
             , :age
             , :visitCnt
             , :studentRole
-            , CURRENT_TIMESTAMP
+            , :currentDate
             )
     ''')
     def insertStudent(Map x)
@@ -77,7 +77,7 @@ interface StudentDAO {
             , age = :age 
             , visitCnt = :visitCnt 
             , studentRole = :studentRole
-            , modDate = CURRENT_TIMESTAMP
+            , modDate = :currentDate
         WHERE id = :id
     ''')
     List updateStudentList(List list)

@@ -25,7 +25,7 @@ interface FileDAO {
 
     @Insert('''
         INSERT INTO File(id, fileName, fileExt, filePath, regUser, regDate, modUser, modDate) 
-        VALUES(:id, :fileName, :fileExt, :filePath, :_userId, CURRENT_TIMESTAMP, :_userId, CURRENT_TIMESTAMP)
+        VALUES(:id, :fileName, :fileExt, :filePath, :_userId, :currentDate, :_userId, :currentDate)
     ''')
     def insertFile(Map x)
 
