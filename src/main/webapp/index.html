@@ -1,61 +1,133 @@
 <!DOCTYPE html>
-<html lang=en>
-    <head>
-        <meta charset=utf-8>
-        <meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <!-- <link rel=icon href=/favicon.ico> -->
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+body {font-family: Arial, Helvetica, sans-serif;}
+form {border: 3px solid #f1f1f1;}
 
-        <title>학생명부(Vanilla) </title>
+input[type=text], input[type=password] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
 
-        <!-- Jquery -->
-        <script
-        src="https://code.jquery.com/jquery-3.4.1.min.js"
-        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-        crossorigin="anonymous"></script>
+button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
 
-        <!-- bootStrap -->
-        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"> -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+button:hover {
+  opacity: 0.8;
+}
 
-        <!-- tui-Grid -->
-        <link rel="stylesheet" href="https://uicdn.toast.com/tui-grid/latest/tui-grid.css" />
-        <script src="https://uicdn.toast.com/tui-grid/latest/tui-grid.js"></script>
+.cancelbtn {
+  width: auto;
+  padding: 10px 18px;
+  background-color: #f44336;
+}
 
-        <!-- axios -->
-        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+.imgcontainer {
+  text-align: center;
+  margin: 24px 0 12px 0;
+}
 
-    </head>
-    <body>
-        <div class="card">
-            <div class="card-header">
-              <h2>학생명부 (Vanilla)</h2>
-            </div>
-              <div class="card-body">
-                <div class="form-group row">
-                  <form id="frmStudentInfo" method ="POST">
-                    <div class="col-md-12">
-                      <input type="text" name="ipt_student_name" id="iptStudentName" placeholder="학생이름">
-                       <span class="input-group_append">
-                         <button type="button" class="btn btn-primary" id="btnLook">검색</button>
-                       </span>
-                    </div>
-                  </form>
-                </div>
-                <div id="grid"></div>
-            </div>
-              <div class="card-footer">
-                <div class="row" style="float:right">
-                  <button type="button" class="btn btn-info" id="btnSearch">조회</button>
-                  <button type="button" class="btn btn-info" id="btnAddRow">행추가</button>
-                  <button type="button" class="btn btn-info" id="btnSave">저장</button>
-                  <button type="button" class="btn btn-danger" id="btnDel">삭제</button>  
-                </div>
-            </div>
-        </div>
-    </body>
-<script src="js/gridDtls.js"></script>
-<script src="js/indexControl.js"></script>
+img.avatar {
+  width: 40%;
+  border-radius: 50%;
+}
+
+.container {
+  padding: 16px;
+}
+
+span.password {
+  float: right;
+  padding-top: 16px;
+}
+
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 300px) {
+  span.password {
+     display: block;
+     float: none;
+  }
+  .cancelbtn {
+     width: 100%;
+  }
+}
+</style>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <!-- axios -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
+
+    <script src="/js/common.js"></script>
+
+</head>
+<body>
+
+<h2>Vannillax Login Example</h2>
+
+    <div class="container">
+        <label for="username"><b>Username</b></label>
+        <input type="text" placeholder="Enter Username" name="username" id="usernameTxt" value="user1" required/>
+
+        <label for="password"><b>Password</b></label>
+        <input type="password" placeholder="Enter Password" name="password" id="passwordTxt" value="1234" required/>
+        <button type="button" id="loginBt">Login</button>
+    </div>
+
+<div id="examples" style="visibility:hidden">
+    <a href="/student.html">Student List Example</a> <br/>
+    <a href="/file.html">File Upload Example</a>
+</div>
+
+</body>
+<script>
+$( "#loginBt" ).click(function() {
+    let usernameTxt = $("input#usernameTxt");
+    let username = usernameTxt.val();
+    if(!username){
+        alert('fill the form "Username"');
+        usernameTxt.focus();
+        return;
+    }
+    let passwordTxt = $("input#passwordTxt");
+    let password = passwordTxt.val();
+    if(!password){
+        alert('fill the form "Password"');
+        passwordTxt.focus();
+        return;
+    }
+
+    let obj = {"username":username, "password":password};
+     axios.post('/rest/user/login', obj)
+         .then(function(response){
+            //console.log(JSON.stringify(response.data.resultObject.data));
+            alert("You logged in");//정상 로그인된 경우
+            $("#examples").css("visibility","visible");
+            vanillaxHelper.putToken(response.data.resultObject.token);
+         })
+         .catch(function(err){
+            if(err.response && err.response.data && err.response.data.message ){
+                let msg = err.response.data.message;
+                if(err.response.data.detail){
+                    msg = msg + " / " + err.response.data.detail;
+                }
+                alert(msg);
+            }
+         });
+});
+
+</script>
+
 </html>

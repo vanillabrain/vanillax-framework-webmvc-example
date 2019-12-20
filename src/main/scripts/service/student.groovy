@@ -7,6 +7,7 @@ import sql.StudentDAO
 import vanillax.framework.core.db.Transactional
 import vanillax.framework.core.object.Autowired
 import vanillax.framework.webmvc.service.ServiceBase
+import vanillax.webmvc.example.common.DateUtils
 
 @Log
 class student extends ServiceBase{
@@ -69,11 +70,13 @@ class student extends ServiceBase{
             list.each{ it ->
                 it.id = sequenceHelper.nextValue('studentSeq')
                 newList << it
+                DateUtils.putCurrentDate(it)
                 studentDAO.insertStudent(it)
             }
             return newList
         }else if(data._input.updatedRows){
             log.info("updatedRows")
+            DateUtils.putCurrentDate(data._input.updatedRows)
             return studentDAO.updateStudentList(data._input.updatedRows)
         }
         return null
@@ -91,6 +94,7 @@ class student extends ServiceBase{
         if(data._param && data._param.action == 'delete'){
             return studentDAO.deleteStudentList(data._input)
         }else{
+            DateUtils.putCurrentDate(data._input)
             return studentDAO.updateStudentList(data._input)
         }
         return null

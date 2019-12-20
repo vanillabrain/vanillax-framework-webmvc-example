@@ -35,7 +35,7 @@ class sample extends ServiceBase{
     *  data._request : HttpServletRequest
     *  data._response : HttpServletResponse
     *  data._param : HttpServletRequest.getParameters() 결과를 맵형태로 제공
-    *  data._path : 현재 서비스를 기준으로 뒷 URI. 예) http://cda.3hand.io/rest/user/info --> user라는 서비스에서 data._path는 "info"
+    *  data._path : 현재 서비스를 기준으로 뒷 URI. 예) http://shop.gaeco.net/rest/user/info --> user라는 서비스에서 data._path는 "info"
     *  data._input : POST, PUT 방식의 입력데이터. GET방식일때는 비어있는 Map이 들어온다.
     *  data._input._userId : 현재 로그인한 사용자의 사용자ID
     */

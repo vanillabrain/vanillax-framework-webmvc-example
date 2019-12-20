@@ -1,5 +1,6 @@
 package service
 
+import common.SequenceHelper
 import common.Validator
 import groovy.util.logging.Log
 import vanillax.webmvc.example.common.Constants
@@ -18,6 +19,8 @@ class user extends ServiceBase{
     UsersDAO usersDAO
     @Autowired
     Validator validator
+    @Autowired
+    SequenceHelper sequenceHelper
 
     @Transactional
     def find(data){
@@ -60,9 +63,10 @@ class user extends ServiceBase{
                     //새 토큰을 생성한다.
                     def token = StringUtils.makeToken()
                     param.token = token
+                    param.id = sequenceHelper.nextValue(Constants.SEQ_USERS_TOKEN)
                     usersDAO.insertUsersToken(param)
                     //Element UI에서 사용하는 기본인증 데이터 구조로 결과를 반환한다.
-                    return [code:200000, data:[token:token]]
+                    return [token:token]
                 }
             }
             if(!loginFlag){

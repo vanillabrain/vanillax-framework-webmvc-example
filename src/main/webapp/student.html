@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang=en>
+    <head>
+        <meta charset=utf-8>
+        <meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <!-- <link rel=icon href=/favicon.ico> -->
+
+        <title>학생명부 </title>
+
+        <!-- jQuery -->
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+        <!-- axios -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
+
+        <!-- bootStrap -->
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"> -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
+        <!-- tui-Grid -->
+        <link rel="stylesheet" href="https://uicdn.toast.com/tui-grid/latest/tui-grid.css" />
+        <script src="https://uicdn.toast.com/tui-grid/latest/tui-grid.js"></script>
+
+        <!-- custom js -->
+        <script src="/js/common.js"></script>
+
+    </head>
+    <body>
+        <div class="card">
+            <div class="card-header">
+              <h2>Vanillax Grid Example (학생명부 입축력)</h2>
+            </div>
+              <div class="card-body">
+                <div class="form-group row">
+                  <form id="frmStudentInfo" method ="POST">
+                    <div class="col-md-12">
+                      <input type="text" name="ipt_student_name" id="iptStudentName" placeholder="학생이름">
+                       <span class="input-group_append">
+                         <button type="button" class="btn btn-primary" id="btnLook">검색</button>
+                       </span>
+                    </div>
+                  </form>
+                </div>
+                <div id="grid"></div>
+            </div>
+              <div class="card-footer">
+                <div class="row" style="float:right">
+                  <button type="button" class="btn btn-info" id="btnSearch">조회</button>
+                  <button type="button" class="btn btn-info" id="btnAddRow">행추가</button>
+                  <button type="button" class="btn btn-info" id="btnSave">저장</button>
+                  <button type="button" class="btn btn-danger" id="btnDel">삭제</button>  
+                </div>
+            </div>
+        </div>
+    </body>
+<script src="js/student.js"></script>
+</html>

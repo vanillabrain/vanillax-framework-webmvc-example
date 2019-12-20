@@ -3,6 +3,7 @@
 /tomcat.8080/
 /build
 /db/vanilla.db
+/fileupload/
 # Created by https://www.gitignore.io/api/eclipse,intellij
 # Edit at https://www.gitignore.io/?templates=eclipse,intellij
 
